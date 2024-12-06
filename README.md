@@ -1,3 +1,4 @@
+"Explore the Latest in Android Development with Jetpack Compose"
 This app demonstrates a clean and modern architecture for Android development as of December 2024. Built with Jetpack Compose, it features:
 
 MVVM Architecture: Streamlined UI state management with ViewModels.
