@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
@@ -41,50 +42,63 @@ fun CategoryScreen(onClick: (category: String) -> Unit) {
     val categories: State<List<String>> = categoryViewModel.categories.collectAsState()
 
     if (categories.value.isEmpty()) {
-        Box(
-            modifier = Modifier.fillMaxSize(1f).background(Color(0xFFf8fafd)),
-            contentAlignment = Alignment.Center,
-        ) {
-            Text(text = "Loading...",color = Color.Black, style = MaterialTheme.typography.headlineLarge)
-        }
+        LoadingScreen()
     } else {
-        Column(
-            modifier = Modifier
-                .fillMaxSize(1f)
-                .background(Color(0xFFf8fafd))
-
-        ) {
-            Header()
-
-            Spacer(modifier = Modifier.padding(8.dp, 0.dp))
-
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(1),
-                contentPadding = PaddingValues(8.dp),
-                verticalArrangement = Arrangement.SpaceAround,
-            ) {
-                items(categories.value.distinct()) {
-                    CategoryItem(category = it, onClick)
-                }
-            }
-
-        }
-
+        CategoryContent(categories = categories.value, onClick = onClick)
     }
+}
 
+@Composable
+fun LoadingScreen() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFFf8fafd)),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "Loading...",
+            color = Color.Black,
+            style = MaterialTheme.typography.headlineLarge
+        )
+    }
+}
+
+@Composable
+fun CategoryContent(categories: List<String>, onClick: (category: String) -> Unit) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFFf8fafd))
+    ) {
+        Header()
+
+        Spacer(modifier = Modifier.padding(vertical = 8.dp))
+
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(1),
+            contentPadding = PaddingValues(8.dp),
+            verticalArrangement = Arrangement.SpaceAround
+        ) {
+            items(categories.distinct()) { category ->
+                CategoryItem(category = category, onClick = onClick)
+            }
+        }
+    }
 }
 @Composable
 fun Header() {
     Row(
         modifier = Modifier
-            .fillMaxWidth(1f)
+            .fillMaxWidth()
             .padding(15.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
         BoxedImage {
             Image(
-                imageVector = Icons.Default.Home, contentDescription = null,
+                imageVector = Icons.Default.Home,
+                contentDescription = null,
                 modifier = Modifier.padding(8.dp)
             )
         }
@@ -94,17 +108,20 @@ fun Header() {
             fontWeight = FontWeight.SemiBold,
             fontSize = 20.sp,
             color = Color.Black,
-            fontFamily = FontFamily(Font(R.font.montserrat)),
+            fontFamily = FontFamily(Font(R.font.montserrat))
         )
+
         BoxedImage {
             Image(
-                imageVector = Icons.Default.Search, contentDescription = null,
+                imageVector = Icons.Default.Search,
+                contentDescription = null,
                 modifier = Modifier.padding(8.dp)
             )
         }
     }
-
 }
+
+
 
 @Composable
 fun CategoryItem(category: String, onClick: (category: String) -> Unit) {
@@ -112,49 +129,56 @@ fun CategoryItem(category: String, onClick: (category: String) -> Unit) {
         modifier = Modifier
             .padding(10.dp)
             .shadow(
-                elevation = 4.dp, // Add shadow with a defined elevation
-                shape = RoundedCornerShape(10.dp) // Define the rounded corner shape
+                elevation = 4.dp,
+                shape = RoundedCornerShape(10.dp)
             )
-            .clip(RoundedCornerShape(10.dp)) // Ensure corners are clipped to the radius
-            .clickable {
-                onClick(category)
-            }
+            .clip(RoundedCornerShape(10.dp))
+            .clickable { onClick(category) }
             .size(160.dp)
             .paint(
                 painter = painterResource(id = R.drawable.bg),
                 contentScale = ContentScale.Crop
             )
-            .border(1.dp, Color(0xFFEEEEEE), RoundedCornerShape(10.dp)), // Ensure border follows the shape
+            .border(
+                width = 1.dp,
+                color = Color(0xFFEEEEEE),
+                shape = RoundedCornerShape(10.dp)
+            ),
         contentAlignment = Alignment.TopCenter
     ) {
-        // Layer to position elements inside the Box
         Box(modifier = Modifier.fillMaxSize()) {
-            // Text positioned at the top center
             Text(
                 text = category,
                 fontSize = 18.sp,
                 color = Color.Black,
                 modifier = Modifier
-                    .align(Alignment.TopCenter) // Align text to the top center
+                    .align(Alignment.TopCenter)
                     .padding(top = 40.dp),
                 style = MaterialTheme.typography.bodyMedium
             )
 
-            // ArrowForward icon positioned at the bottom right
             Image(
                 imageVector = Icons.Default.ArrowForward,
                 contentDescription = null,
                 modifier = Modifier
-                    .align(Alignment.BottomEnd) // Align to the bottom-right corner
-                    .padding(15.dp) // Add padding to prevent it from sticking to the edges
+                    .align(Alignment.BottomEnd)
+                    .padding(15.dp)
             )
         }
     }
 }
-
-
-
-
+@Composable
+fun BoxedImage(content: @Composable () -> Unit) {
+    Box(
+        modifier = Modifier
+            .size(40.dp)
+            .clip(CircleShape)
+            .background(Color.LightGray),
+        contentAlignment = Alignment.Center
+    ) {
+        content()
+    }
+}
 
 
 
