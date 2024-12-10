@@ -33,7 +33,6 @@ fun MainScreen() {
     }
 }
 
-//init App
 @Composable
 fun App() {
     val navController = rememberNavController()
