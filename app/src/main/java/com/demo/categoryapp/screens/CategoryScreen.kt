@@ -86,6 +86,7 @@ fun CategoryContent(categories: List<String>, onClick: (category: String) -> Uni
         }
     }
 }
+
 @Composable
 fun Header() {
     Row(
@@ -102,7 +103,6 @@ fun Header() {
                 modifier = Modifier.padding(8.dp)
             )
         }
-
 
 
         Text(
@@ -169,6 +169,7 @@ fun CategoryItem(category: String, onClick: (category: String) -> Unit) {
         }
     }
 }
+
 @Composable
 fun BoxedImage(content: @Composable () -> Unit) {
     Box(
