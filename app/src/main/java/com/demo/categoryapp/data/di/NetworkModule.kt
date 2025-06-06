@@ -1,6 +1,6 @@
-package com.demo.categoryapp.di
+package com.demo.categoryapp.data.di
 
-import com.demo.categoryapp.api.InterfaceAPI
+import com.demo.categoryapp.data.api.InterfaceAPI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +23,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideInterfaceAPI(retrofit: Retrofit) : InterfaceAPI{
+    fun provideInterfaceAPI(retrofit: Retrofit) : InterfaceAPI {
         return retrofit.create(InterfaceAPI::class.java)
     }
 }

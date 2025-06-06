@@ -1,4 +1,4 @@
-package com.demo.categoryapp.screens
+package com.demo.categoryapp.presentation
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -38,7 +38,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.demo.categoryapp.R
-import com.demo.categoryapp.videmodels.DetailViewModel
+import com.demo.categoryapp.domain.videmodels.DetailViewModel
 
 @Composable
 fun DetailScreen(navController: NavHostController, category: String) {

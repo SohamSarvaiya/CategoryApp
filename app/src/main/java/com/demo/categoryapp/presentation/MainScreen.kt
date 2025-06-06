@@ -1,4 +1,4 @@
-package com.demo.categoryapp.screens
+package com.demo.categoryapp.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

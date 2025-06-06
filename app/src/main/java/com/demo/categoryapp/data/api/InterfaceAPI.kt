@@ -1,6 +1,6 @@
-package com.demo.categoryapp.api
+package com.demo.categoryapp.data.api
 
-import com.demo.categoryapp.models.CategoryListItem
+import com.demo.categoryapp.domain.models.CategoryListItem
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header

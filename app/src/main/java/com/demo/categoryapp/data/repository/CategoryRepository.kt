@@ -1,7 +1,7 @@
-package com.demo.categoryapp.repository
+package com.demo.categoryapp.data.repository
 
-import com.demo.categoryapp.api.InterfaceAPI
-import com.demo.categoryapp.models.CategoryListItem
+import com.demo.categoryapp.data.api.InterfaceAPI
+import com.demo.categoryapp.domain.models.CategoryListItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject

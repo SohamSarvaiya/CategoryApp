@@ -1,4 +1,4 @@
-package com.demo.categoryapp.models
+package com.demo.categoryapp.domain.models
 
 data class CategoryListItem(
     val category: String,

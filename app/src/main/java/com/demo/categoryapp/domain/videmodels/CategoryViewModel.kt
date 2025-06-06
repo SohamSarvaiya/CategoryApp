@@ -1,8 +1,8 @@
-package com.demo.categoryapp.videmodels
+package com.demo.categoryapp.domain.videmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.demo.categoryapp.repository.CategoryRepository
+import com.demo.categoryapp.data.repository.CategoryRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
